@@ -60,7 +60,7 @@ and unzip the folder.  Then, train using the following command:
 CUDA_VISIBLE_DEVICES=<GPU1,GPU2...> python3  train.py <binarized data path from previous step> --save-dir <checkpoint directory>  \
     --lr 0.0001 --optimizer adam  -a bert_rand --max-update 100000 --user-dir my_model --batch-size 32  \
     --lr-scheduler inverse_sqrt --warmup-updates 40000 --max-source-positions 512 --max-target-positions 512 \
-    --bert_path bert_model.ckpt
+    --bert-path bert_model.ckpt
 ```
 
 All the model parameters are specified in ``my_model/__init__.py`` file.
