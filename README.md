@@ -38,7 +38,7 @@ sh preprocess.sh <raw data directory> <tokenized data directory>  <binarized dat
 # .src files contain complex sentences and .dst files contain simple sentences.
 ```
 
-2. Download the Transformer checkpoint for [newsela](http://web.cse.ohio-state.edu/~maddela.4/newsela_chkpt.pt) or [wiki](http://web.cse.ohio-state.edu/~maddela.4/wiki_chkpt.pt). You can perform generation using the following command.
+2. Download the Transformer checkpoint for [newsela](http://web.cse.ohio-state.edu/~maddela.4/newsela_chkpt.pt) or [wiki](http://web.cse.ohio-state.edu/~maddela.4/wikipedia_chkpt.pt). You can perform generation using the following command.
  
 ```
 sh generate.sh <binarized data directory> <checkpoint> <output file name> <GPU device id> <split>
@@ -58,9 +58,9 @@ and unzip the folder.  Then, train using the following command:
 
 ```
 CUDA_VISIBLE_DEVICES=<GPU1,GPU2...> python3  train.py <binarized data path from previous step> --save-dir <checkpoint directory>  \
-    --lr 0.0001 --optimizer adam  -a bert_rand --max-update 200000 --user-dir my_model --batch-size 32  \
+    --lr 0.0001 --optimizer adam  -a bert_rand --max-update 100000 --user-dir my_model --batch-size 32  \
     --lr-scheduler inverse_sqrt --warmup-updates 40000 --max-source-positions 512 --max-target-positions 512 \
-    --bert_path uncased_L-12_H-768_A-12/bert_model.ckpt
+    --bert_path bert_model.ckpt
 ```
 
 All the model parameters are specified in ``my_model/__init__.py`` file.
