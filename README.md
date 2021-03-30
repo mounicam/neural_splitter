@@ -38,7 +38,7 @@ sh preprocess.sh <raw data directory> <tokenized data directory>  <binarized dat
 # .src files contain complex sentences and .dst files contain simple sentences.
 ```
 
-2. Download the Transformer checkpoint for [newsela](http://web.cse.ohio-state.edu/~maddela.4/newsela_chkpt.pt) or [wiki](http://web.cse.ohio-state.edu/~maddela.4/wikipedia_chkpt.pt). You can perform generation using the following command.
+2. Download the Transformer checkpoint. You can perform generation using the following command.
  
 ```
 sh generate.sh <binarized data directory> <checkpoint> <output file name> <GPU device id> <split>
