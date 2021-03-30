@@ -53,7 +53,7 @@ sh generate.sh <binarized data directory> <checkpoint> <output file name> <GPU d
 1. Follow the step 1 described in the above section for Transformer.
 
 
-2. Download the BERT-base checkpoint from [here](https://storage.googleapis.com/bert_models/2020_02_20/uncased_L-12_H-768_A-12.zip) 
+2. Download the BERT-base checkpoint from [here](https://storage.googleapis.com/bert_models/2018_10_18/cased_L-12_H-768_A-12.zip) 
 and unzip the folder.  Then, train using the following command:
 
 ```
