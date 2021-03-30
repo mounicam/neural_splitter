@@ -33,32 +33,17 @@ def main(args):
 
     for i in range(0, len(out_anon_sents)):
         hyp, _ = out_anon_sents[i]
+        denon_sent = hyp.replace("[SEP]", "<SEP>").strip()
 
-        if int(args.wp) == 1:
-            denon_sent = hyp.replace("[SEP]", "<SEP>").strip()
-            if denon_sent.endswith("<SEP>"):
-                denon_sent = " ".join(denon_sent.split()[1:-1])
-            else:
-                denon_sent = " ".join(denon_sent.split()[1:])
-            denon_sent = denon_sent.lower().strip()
-            denon_sent = denon_sent.replace(" ##", "")
-            denon_sent = denon_sent.replace("\' \'", '"') #'' instead of " for newsela
-            denon_sent = denon_sent.replace(" - - ", " -- ")
-            denon_sent = re.sub("(\d+) \, (\d+)", "\\1,\\2", denon_sent)
-            denon_sent = re.sub("(\d+) \. (\d+)", "\\1.\\2", denon_sent)
-            denon_sent = denon_sent.replace("- lrb -", "-lrb-")
-            denon_sent = denon_sent.replace("- rrb -", "-rrb-")
-            denon_sent = denon_sent.replace(" - ", "-")
-            denon_sent = denon_sent.replace(" ' s ", " 's ")
-            denon_sent = denon_sent.replace(" ' d ", " 'd ")
-            denon_sent = denon_sent.replace(" ' m ", " 'm ")
-            denon_sent = denon_sent.replace(" n ' t ", " n't ")
-            denon_sent = denon_sent.replace(" ' ve ", " 've ")
-            denon_sent = denon_sent.replace(" ' re ", " 're ")
-            denon_sent = denon_sent.replace(" ' ll ", " 'll ")
+        if denon_sent.endswith("<SEP>"):
+            denon_sent = " ".join(denon_sent.split()[1:-1])
         else:
-            denon_sent = hyp.replace("@@ ", "")
-        fp.write(denon_sent.lower() + "\n")
+            denon_sent = " ".join(denon_sent.split()[1:])
+
+        denon_sent = denon_sent.replace(" ##", "").strip()
+        denon_sent = " ".join([tok for tok in denon_sent.split() if "[unused1]" not in tok])
+
+        fp.write(denon_sent + "\n")
 
     fp.close()
 
@@ -67,7 +52,6 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--out_anon')
     parser.add_argument('--denon')
-    parser.add_argument('--wp')
     parser.add_argument('--ignore_lines', default=5)
     parser.add_argument('--interactive', default=5)
     args = parser.parse_args()

@@ -3,7 +3,7 @@ from wordpiece import FullTokenizer
 
 
 def main(args):
-    tokenizer = FullTokenizer(args.vocab)
+    tokenizer = FullTokenizer(args.vocab, do_lower_case=False)
 
     fp = open(args.output, "w")
     for line in open(args.input):
@@ -12,7 +12,8 @@ def main(args):
         tokens.append("[SEP]")
         tokens = ["[CLS]"] + tokens
         tokenized_line = " ".join(tokens)
-        tokenized_line = tokenized_line.replace("< sep >", "[SEP]")
+        tokenized_line = tokenized_line.replace("< SE ##P >", "[SEP]")
+
         assert "\[UNK\]" not in tokenized_line
         fp.write(tokenized_line + "\n")
     fp.close()
