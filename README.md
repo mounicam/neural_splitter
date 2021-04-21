@@ -12,7 +12,7 @@ If you do not have PyTorch, please follow the instructions here to install: http
 
 And then install fairseq from the source code shared in the repository.
 ```
-cd simplification
+cd neural_splitter
 pip install --editable .
 ```
 
